@@ -2,8 +2,13 @@
 
 Allow to sync - upload and download - your profile (saves) and screenshots from the Miyoo to any cloud compatible with rclone.
 
-Heavily inspired by this projet : [cloud-saves-miyoo-mini-plus](https://github.com/hotcereal/cloud-saves-miyoo-mini-plus).
+<div align="center">
+  <img src="docs/images/SyncSave_000.png" width="30%" />
+  <img src="docs/images/SyncSave_001.png" width="30%" />
+  <img src="docs/images/SyncSave_002.png" width="30%" />
+</div>  
 
+Heavily inspired by this projet : [cloud-saves-miyoo-mini-plus](https://github.com/hotcereal/cloud-saves-miyoo-mini-plus).
 
 ## Table des matières
 
@@ -57,7 +62,7 @@ In the `CLOUD_PATH` variable, the first word is the name of your rclone remote. 
 2. **Navigate** with D-pad (Up/Down)
 3. **Select action**:
    - **Upload data**: Send profile (with saves) and screenshots to your remote
-   - **Download data**: Retriev profile (with saves) and screenshots from your remote
+   - **Download data**: Retrieve profile (with saves) and screenshots from your remote
    - **Exit**: Close the application
 4. **Confirm** with A button
 
