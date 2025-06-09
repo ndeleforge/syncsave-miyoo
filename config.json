@@ -1,0 +1,6 @@
+{
+	"label":	"SyncSave",
+	"icon":	"/mnt/SDCARD/Icons/Default/app/terminal.png",
+	"launch":	"launch.sh",
+	"description":	"Profile/screenshots synchronization"
+}
