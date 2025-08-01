@@ -10,10 +10,10 @@ Heavily inspired by this projet : [cloud-saves-miyoo-mini-plus](https://github.c
 
 <div align="center">
 
-  <img src="docs/images/SyncSave_000.png" width="30%" />
-  <img src="docs/images/SyncSave_001.png" width="30%" />
-  <img src="docs/images/SyncSave_002.png" width="30%" />
-  
+ <img src="docs/images/SyncSave_000.png" width="30%" />
+ <img src="docs/images/SyncSave_001.png" width="30%" />
+ <img src="docs/images/SyncSave_002.png" width="30%" />
+
 </div>
 
 ## Table of contents
