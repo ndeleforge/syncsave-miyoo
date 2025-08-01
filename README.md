@@ -1,16 +1,22 @@
 # SyncSave
 
+[![GitHub license](https://img.shields.io/github/license/ndeleforge/syncsave-miyoo?style=for-the-badge)](https://github.com/ndeleforge/binocle/blob/main/LICENCE)
+![GitHub last commit](https://img.shields.io/github/last-commit/ndeleforge/syncsave-miyoo?style=for-the-badge)
+[![GitHub forks](https://img.shields.io/github/forks/ndeleforge/syncsave-miyoo?style=for-the-badge)](https://github.com/ndeleforge/binocle/network)
+[![GitHub stars](https://img.shields.io/github/stars/ndeleforge/syncsave-miyoo?style=for-the-badge)](https://github.com/ndeleforge/binocle/stargazers)
+
 Allow to sync - upload and download - your profile (saves) and screenshots from the Miyoo to any cloud compatible with rclone.
+Heavily inspired by this projet : [cloud-saves-miyoo-mini-plus](https://github.com/hotcereal/cloud-saves-miyoo-mini-plus).
 
 <div align="center">
+
   <img src="docs/images/SyncSave_000.png" width="30%" />
   <img src="docs/images/SyncSave_001.png" width="30%" />
   <img src="docs/images/SyncSave_002.png" width="30%" />
-</div>  
+  
+</div>
 
-Heavily inspired by this projet : [cloud-saves-miyoo-mini-plus](https://github.com/hotcereal/cloud-saves-miyoo-mini-plus).
-
-## Table des matières
+## Table of contents
 
 - [Installation](#installation)
 - [Configuration](#configuration)
