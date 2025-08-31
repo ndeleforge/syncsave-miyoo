@@ -1,5 +1,6 @@
 #!/bin/sh
 
+###############################################
 # Main variables (do not edit)
 
 HOME=/mnt/SDCARD
@@ -8,6 +9,7 @@ PADSP="$HOME/miyoo/lib/libpadsp.so"
 INFO_PANEL="$HOME/.tmp_update/bin/infoPanel"
 DEVICE="/dev/input/event0"
 
+###############################################
 # Miyoo variables (do not edit)
 
 APP_FOLDER="$HOME/App/SyncSave"
@@ -17,16 +19,13 @@ RCLONE_LOG="$APP_FOLDER/rclone.log"
 PROFILE_FODLER="$HOME/Saves/CurrentProfile"
 SCREENSHOT_FOLDER="$HOME/Screenshots"
 
+###############################################
 # Cloud settings (edit these variables to match your cloud setup)
 
 CLOUD_HOST=""
 CLOUD_PATH=""
 
-# Menu variables (do not edit)
-
-SELECTED=0
-MENU_SIZE=3
-
+###############################################
 # Info panel functions
 
 start_info_panel() {
@@ -55,6 +54,7 @@ error_exit() {
     exit 1
 }
 
+###############################################
 # Checks functions
 
 check_rclone() {
@@ -88,18 +88,10 @@ check_cloud() {
     fi
 }
 
-# Menu functions
+###############################################
+# Main functions
 
-display_menu() {
-    if [ "$SELECTED" -eq 0 ]; then
-        update_info_panel '> Upload data <\nDownload data\nExit'
-    elif [ "$SELECTED" -eq 1 ]; then
-        update_info_panel 'Upload data\n> Download data <\nExit'
-    else
-        update_info_panel 'Upload data\nDownload data\n> Exit <'
-    fi
-}
-
+# Read input from the device and return button name
 read_input() {    
     event=$(dd if="$DEVICE" bs=16 count=1 2>/dev/null | od -An -tx1 | tr -d ' \n')
     if [ -z "$event" ] || [ ${#event} -lt 32 ]; then
@@ -119,15 +111,27 @@ read_input() {
         case $CODE_DEC in
             103) echo "UP" ;;
             108) echo "DOWN" ;;
+            105) echo "LEFT" ;;
+            106) echo "RIGHT" ;;
             57) echo "A" ;;
+            29) echo "B" ;;
+            42) echo "X" ;;
+            56) echo "Y" ;;
+            18) echo "L1" ;;
+            20) echo "R1" ;;
+            15) echo "L2" ;;
+            14) echo "R2" ;;
+            28) echo "START" ;;
+            97) echo "SELECT" ;; 
+            114) echo "VOL_DOWN" ;;
+            115) echo "VOL_UP" ;;
         esac
-    else
+    else 
         echo ""
     fi
 }
 
-# Main functions
-
+# Sync system time with NTP server
 sync_time() {
     update_info_panel "Syncing time"
 
@@ -142,6 +146,19 @@ sync_time() {
     sleep 1
 }
 
+# Do some checks and launch the sync process
+launch_sync() {
+    direction="$1"  # "upload" or "download"
+
+    sleep 1
+    check_rclone
+    check_wifi
+    check_cloud
+    sync_time
+    sync_data "$direction"
+}
+
+# Sync data function using rclone
 sync_data() {
     direction="$1"  # "upload" or "download"
     
@@ -190,45 +207,33 @@ sync_data() {
     fi
 }
 
+###############################################
 # Main script execution
 
 start_info_panel "Starting SyncSave"
+sleep 1
+update_info_panel "Press a button to make your choice \n\nA : Upload to the cloud\nY : Download on the device\nB : Exit"
 
 while true; do
-    display_menu
-
     input=$(read_input)
     if [ -z "$input" ]; then
         continue
     fi
 
     case $input in
-        UP)
-            SELECTED=$(( (SELECTED - 1 + MENU_SIZE) % MENU_SIZE )) ;;
-        DOWN)
-            SELECTED=$(( (SELECTED + 1) % MENU_SIZE ))  ;;
+        B)
+            update_info_panel "Exiting SyncSave"
+            sleep 1
+            dismiss_info_panel
+            exit 0
+            ;;
         A)
-            if [ "$SELECTED" -eq 0 ] || [ "$SELECTED" -eq 1 ]; then
-                if [ "$SELECTED" -eq 0 ]; then
-                    update_info_panel "Initializing upload..."
-                    action="upload"
-                else
-                    update_info_panel "Initializing download..."
-                    action="download"
-                fi
-                
-                sleep 1
-                check_rclone
-                check_wifi
-                check_cloud
-                sync_time
-                sync_data "$action"
-            else
-                update_info_panel "Exiting SyncSave"
-                sleep 1
-                dismiss_info_panel
-                exit 0
-            fi
+            update_info_panel "Initializing upload..."
+            launch_sync upload
+            ;;
+        Y)
+            update_info_panel "Initializing download..."
+            launch_sync download
             ;;
     esac
 done

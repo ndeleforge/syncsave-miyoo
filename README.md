@@ -18,13 +18,14 @@ Heavily inspired by this projet : [cloud-saves-miyoo-mini-plus](https://github.c
 
 ## Table of contents
 
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
-- [Troubleshooting](#troubleshooting)
-  - [Menu is lagging](#menu-is-lagging)
-  - [Errors issues](#errors-issues)
-  - [Logs](#logs)
+- [SyncSave](#syncsave)
+  - [Table of contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Configuration](#configuration)
+  - [Usage](#usage)
+  - [Troubleshooting](#troubleshooting)
+    - [Errors issues](#errors-issues)
+    - [Logs](#logs)
 
 ## Installation
 
@@ -65,18 +66,12 @@ In the `CLOUD_PATH` variable, the first word is the name of your rclone remote. 
 ## Usage
 
 1. **Launch SyncSave** from your Miyoo Mini Plus Apps menu
-2. **Navigate** with D-pad (Up/Down)
-3. **Select action**:
-   - **Upload data**: Send profile (with saves) and screenshots to your remote
-   - **Download data**: Retrieve profile (with saves) and screenshots from your remote
+2. **Select action with the proper button**:
+   - **Upload**: Send profile (with saves) and screenshots to your remote
+   - **Download**: Retrieve profile (with saves) and screenshots from your remote
    - **Exit**: Close the application
-4. **Confirm** with A button
 
 ## Troubleshooting
-
-### Menu is slow
-Yes, I know.
-
 ### Errors issues
 1. **rclone / rclone.conf is missing**: Check that the rclone binary and it's configuration file are in the `syncsave` app folder.
 2. **WI-FI disabled**: Activate the WI-FI in the MIyoo settings
